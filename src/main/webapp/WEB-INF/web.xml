@@ -1,0 +1,39 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+  <display-name>Archetype Created Web Application</display-name>
+
+
+<servlet>
+<servlet-name>CreateBucketServlet</servlet-name>
+<servlet-class>com.ironyard.servlet.CreateBucketServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+<servlet-name>CreateBucketServlet</servlet-name>
+<url-pattern>/bucket</url-pattern>
+</servlet-mapping>
+
+  <servlet>
+    <servlet-name>DeleteBucketServlet</servlet-name>
+    <servlet-class>com.ironyard.servlet.DeleteBucketServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>DeleteBucketServlet</servlet-name>
+    <url-pattern>/deletebucket</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>EditBucketServlet</servlet-name>
+    <servlet-class>com.ironyard.servlet.EditBucketServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>EditBucketServlet</servlet-name>
+    <url-pattern>/editbucket</url-pattern>
+  </servlet-mapping>
+
+</web-app>
