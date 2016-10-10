@@ -25,10 +25,10 @@
 <form method="post" action="/configurationweb/bucket">
 
     <table align="center">
-        <tr><td>Where To Go</td> <td><input type="text" name="where" value="<c:out value="${bucketlist.where}"/>"></td></tr>
-        <tr><td>When To Go</td> <td><input type="text" name="when" value="<c:out value="${bucketlist.when}"/>"></td></tr>
-        <tr><td>Budget</td> <td><input type="text" name="howMuch" value="<c:out value="${bucketlist.howMuch}"/>"></td></tr>
-        <tr><td>ID</td> <td><input type="text" name="id" value="<c:out value="${bucketlist.id}"/>"></td></tr>
+        <tr><td>Where To Go</td> <td><input type="text" name="where" value="<c:out value="${abucketlistItem.where}"/>"></td></tr>
+        <tr><td>When To Go</td> <td><input type="text" name="when" value="<c:out value="${abucketlistItem.when}"/>"></td></tr>
+        <tr><td>Budget</td> <td><input type="text" name="howMuch" value="<c:out value="${abucketlistItem.howMuch}"/>"></td></tr>
+        <tr><td>ID</td> <td><input type="text" name="id" value="<c:out value="${abucketlistItem.id}"/>"></td></tr>
     </table>
 
     <p></p>
@@ -45,12 +45,12 @@
 
     <c:forEach items="${theBucketList}" var="bucketList">
 
-        <tr><td><a href="/configurationweb/bucket?id=<c:out value="${bucketList.id}"/>"><font face ="cursive">Edit</font></a> </td><td>
+        <tr><td><a href="/configurationweb/editbucket?id=<c:out value="${bucketList.id}"/>"><font face ="cursive">Edit</font></a> </td><td>
             <c:out value="${bucketList.where}"/></td><td>
             <c:out value="${bucketList.when}"/></td><td>
             <c:out value="${bucketList.howMuch}"/></td><td>
             <c:out value="${bucketList.id}"/></td><td>
-            <a href="/configurationweb/bucket?delete=<c:out value="${bucketList.id}"/>"><font face="cursive">Delete</font></a></td></tr>
+            <a href="/configurationweb/deletebucket?delete=<c:out value="${bucketList.id}"/>"><font face="cursive">Delete</font></a></td></tr>
     </c:forEach>
 </table>
 

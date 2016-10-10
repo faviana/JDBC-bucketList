@@ -21,7 +21,7 @@ public class DeleteBucketServlet extends HttpServlet {
         String deleteThisId = req.getParameter("delete");
         long deleteId = Long.parseLong(deleteThisId);
 
-        List<Bucket> theBucketList= (List<Bucket>) req.getAttribute("theBucketList");
+        List<Bucket> theBucketList= (List<Bucket>) req.getSession().getAttribute("theBucketList");
 
         for (Bucket b:theBucketList){
             if (b.getId()== deleteId){

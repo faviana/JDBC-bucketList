@@ -18,11 +18,9 @@ import java.util.List;
 public class EditBucketServlet extends HttpServlet {
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        String when =  req.getParameter("when");
-        String where = req.getParameter("where");
-        String howMuch = req.getParameter("howMuch");
+
         String id = req.getParameter("id");
 
         HttpSession session = req.getSession();
@@ -40,23 +38,9 @@ public class EditBucketServlet extends HttpServlet {
                 break;
             }
         }
-        if (foundBucket == null){
-            Bucket myNewBucket = new Bucket(when,where, howMuch, Long.parseLong(id));
-            bucketList.add(myNewBucket);
-        }else{
-            foundBucket.setWhere(where);
-            foundBucket.setWhen(when);
-            foundBucket.setHowMuch(howMuch);
-        }
 
-        session.setAttribute("theBucketList", bucketList);
+        req.setAttribute("abucketlistItem", foundBucket);
 
-        RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/index.jsp");
-        dispatcher.forward(req,resp);
-    }
-
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/index.jsp");
         dispatcher.forward(req,resp);
     }

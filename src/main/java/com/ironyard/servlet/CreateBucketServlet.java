@@ -22,25 +22,51 @@ public class CreateBucketServlet extends HttpServlet {
 
         String where = req.getParameter("where");
         String when = req.getParameter("when");
-        String howMuch= req.getParameter("howMuch");
+        String howMuch = req.getParameter("howMuch");
         String id = req.getParameter("id");
 
         HttpSession session = req.getSession();
         List<Bucket> bucketList = (List<Bucket>) session.getAttribute("theBucketList");
 
-        if (bucketList ==null) {
+        if (bucketList == null) {
             bucketList = new ArrayList<Bucket>();
+        }
+
+        //acquire id info from session
+        Bucket foundBucket = null;
+
+        //if found display info
+        for (Bucket bucket:bucketList){
+            if(bucket.getId()== Long.parseLong(id)){
+                foundBucket=bucket;
+                break;
+            }
+        }
+
+        //send info back
+        if (foundBucket==null) {
+
+
+            //if not found create a new one
+            Bucket myBucket = new Bucket(where, when, howMuch, Long.parseLong(id));
+            bucketList.add(myBucket);
+
+        } else{
+            //if found update info
+
+            foundBucket.setWhere(where);
+            foundBucket.setWhen(when);
+            foundBucket.setHowMuch(howMuch);
 
         }
-         Bucket myBucket = new Bucket(where,when, howMuch, Long.parseLong(id));
-        bucketList.add(myBucket);
 
-
-        session.setAttribute("theBucketList",bucketList);
+        session.setAttribute("theBucketList", bucketList);
 
         RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/index.jsp");
-                dispatcher.forward(req,resp);
-        }
+        dispatcher.forward(req, resp);
+
+    }
+
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
